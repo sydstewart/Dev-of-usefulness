@@ -9,7 +9,7 @@ import plotly.graph_objects as go
 def get_change_note_data():
     #read in 10000 rows of data 
     print('Syd')
-    dicts = app_tables.change_notes.search()
+    changes = app_tables.change_notes.search()
     # df = pd.DataFrame.from_dict(dicts)
     # # for column_headers in df.columns: 
     # #     print(column_headers)
@@ -19,8 +19,7 @@ def get_change_note_data():
     # print(df.head())
 
    # chart_data = app_tables.completed_work.search()
-   dicts = [{'change_date': r['change_date'], 'Class': r['classid']}
-         for r in chart_data]
+   dicts = [{'change_date': r['change_date'], 'Class': r['classid']} for r in changes]
    df = pd.DataFrame.from_dict(dicts)
    print('df',df)
    line_plots = go.Scatter(x=df['Date_entered'], y=df['delta_work'], name='Delta Work Completed', marker=dict(color='#e50000'))
