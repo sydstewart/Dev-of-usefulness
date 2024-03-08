@@ -1,6 +1,135 @@
 allow_embedding: false
-package_name: Material_Design_19
-name: Material Design 19
+package_name: Usefulness
+db_schema:
+  change_notes:
+    title: change_notes
+    client: none
+    server: full
+    columns:
+    - name: new_change_note_id
+      admin_ui: {width: 200}
+      type: string
+    - name: change_note_id
+      admin_ui: {width: 252.77778}
+      type: string
+    - name: stage
+      admin_ui: {width: 200}
+      type: string
+    - name: change_date
+      admin_ui: {width: 200}
+      type: datetime
+    - name: title
+      admin_ui: {width: 253}
+      type: string
+    - name: description
+      admin_ui: {width: 200}
+      type: string
+    - name: reported_by_customer
+      admin_ui: {width: 200}
+      type: string
+    - name: priority
+      admin_ui: {width: 200}
+      type: string
+    - name: type
+      admin_ui: {width: 200}
+      type: string
+    - name: classid
+      admin_ui: {width: 200}
+      type: string
+    - name: product_area
+      admin_ui: {width: 200}
+      type: string
+    - name: function
+      admin_ui: {width: 200}
+      type: string
+    - name: difficulty
+      admin_ui: {width: 200}
+      type: number
+    - name: payoff
+      admin_ui: {width: 200}
+      type: number
+    - name: ips
+      admin_ui: {width: 200}
+      type: number
+    - name: pick
+      admin_ui: {width: 200}
+      type: string
+    - name: investigator
+      admin_ui: {width: 200}
+      type: string
+    - name: possible_solution
+      admin_ui: {width: 200}
+      type: string
+    - name: released_in_version
+      admin_ui: {width: 200}
+      type: string
+    - name: worst_case
+      admin_ui: {width: 200}
+      type: string
+    - name: mitigations
+      admin_ui: {width: 200}
+      type: string
+    - name: severity
+      admin_ui: {width: 200}
+      type: number
+    - name: probability
+      admin_ui: {width: 200}
+      type: number
+    - name: visibility
+      admin_ui: {width: 200}
+      type: number
+    - name: rpn
+      admin_ui: {width: 200}
+      type: number
+    - name: tags
+      admin_ui: {width: 200}
+      type: string
+    - name: year_month
+      admin_ui: {width: 200}
+      type: string
+    - name: pick_note
+      admin_ui: {width: 200}
+      type: string
+    - name: user
+      admin_ui: {width: 200}
+      type: string
+    - name: created_by_firstname
+      admin_ui: {width: 200}
+      type: string
+    - name: created_by_lastname
+      admin_ui: {width: 200}
+      type: string
+    - name: found_in_version_no
+      admin_ui: {width: 200}
+      type: string
+    - name: status
+      admin_ui: {width: 200}
+      type: string
+    - name: progress
+      admin_ui: {width: 200}
+      type: number
+    - name: assigned_to
+      admin_ui: {width: 200}
+      type: string
+    - name: change_search_date
+      admin_ui: {width: 200}
+      type: date
+    - name: 'rpn '
+      admin_ui: {width: 200}
+      type: number
+    - name: found_in_last_two_years
+      admin_ui: {width: 200}
+      type: bool
+    - name: assigned_to
+      admin_ui: {width: 200}
+      type: string
+    - name: due_date
+      admin_ui: {width: 200}
+      type: datetime
+name: Usefulness
 startup_form: Form1
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
-services: []
+services:
+- source: /runtime/services/tables.yml
+  client_config: {}
+  server_config: {}
