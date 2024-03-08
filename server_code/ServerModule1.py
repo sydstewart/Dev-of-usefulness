@@ -17,6 +17,9 @@ def get_change_note_data():
     df = pd.DataFrame.from_dict(dicts)
   
    # line_plots = go.Scatter(x=df['Date_entered'], y=df['delta_work'], name='Delta Work Completed', marker=dict(color='#e50000'))
-    df['ym-date'] = df['change_date'].dt.strftime('%Y-%m')
-    df = df.groupby('Class','month_year').count()
+    df['change_date'] = pd.to_datetime(df['change_date'])
+    df['yyyy'] = pd.to_datetime(df['change_date']).dt.year (utc=True)
+    # df['mm'] = pd.to_datetime(df['change_date']).dt.month
+      
+    df = df.groupby('Class','yyyy').count()
     print('df',df)
