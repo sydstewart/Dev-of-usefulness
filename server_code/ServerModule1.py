@@ -4,7 +4,7 @@ from anvil.tables import app_tables
 import anvil.server
 import pandas as pd
 import plotly.graph_objects as go
-
+from datetime import datetime, time , date , timedelta
 
 
 @anvil.server.callable
@@ -17,6 +17,6 @@ def get_change_note_data():
     df = pd.DataFrame.from_dict(dicts)
   
    # line_plots = go.Scatter(x=df['Date_entered'], y=df['delta_work'], name='Delta Work Completed', marker=dict(color='#e50000'))
-    df['month_year'] = df['change_date'].dt.to_period('M')
+    df['ym-date'] = df['change_date'].dt.strftime('%Y-%m')
     df = df.groupby('Class','month_year').count()
     print('df',df)
