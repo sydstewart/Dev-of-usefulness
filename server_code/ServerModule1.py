@@ -29,7 +29,10 @@ def get_change_note_data():
     options = ['Improvement'] 
     df['Year_Month'] = df['change_date'].dt.to_period('M')
     df = df[df['Class'].isin(options)] 
-    df = df.groupby('Year_Month').count() 
-    print('df',df)
-    line_plots = go.Scatter(x=df['Year_Month'], y=df['count'], name='Improvements per month', marker=dict(color='#e50000'))
+    df['Counts'] =1
+    result = df.groupby('Year_Month').count()
+
+     
+    print('df',result)
+    line_plots = go.Scatter(x=df['Year_Month'], y=df['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
     return line_plots
