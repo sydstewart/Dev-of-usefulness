@@ -8,10 +8,15 @@ components:
   name: content_panel
   layout_properties: {slot: default}
   components:
+  - name: date_picker_1
+    properties: {pick_time: true}
+    type: DatePicker
+    layout_properties: {grid_position: 'TWKLFW,ZHAQOK'}
+    event_bindings: {change: date_picker_1_change}
   - name: plot_1
     properties: {}
     type: Plot
-    layout_properties: {grid_position: 'LZYJFS,ZPFLFF'}
+    layout_properties: {grid_position: 'LZYJFS,ZPFLFF', full_width_row: true}
 - type: FlowPanel
   properties: {}
   name: navbar_links

@@ -11,7 +11,12 @@ class Form1(Form1Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
-    line_plots = anvil.server.call('get_change_note_data')
-    self.plot_1.data = line_plots
+   
     # Any code you write here will run before the form opens.
+
+  def date_picker_1_change(self, **event_args):
+    """This method is called when the selected date changes"""
+    start_date = self.date_picker_1.date
+    line_plots = anvil.server.call('get_change_note_data', start_date)
+    self.plot_1.data = line_plots
+    pass
