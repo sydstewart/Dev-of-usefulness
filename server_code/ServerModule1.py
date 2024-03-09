@@ -48,9 +48,10 @@ def get_change_note_data():
     res['index'] = range(len(res))
     res = res.reset_index()
     line_plots = go.Scatter(x=res['Year_Month'] , y=res['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
+    print(line_plots)
     res.to_dict('records')
     print(res)
-    line_plots = go.Scatter(x=res['Year_Month'] , y=res['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
+    # line_plots = go.Scatter(x=res['Year_Month'] , y=res['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
     return line_plots
 # df = pandas.DataFrame.from_dict(dicts)
   #   Impcount = 0
