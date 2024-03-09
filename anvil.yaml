@@ -3,7 +3,7 @@ package_name: Usefulness
 db_schema:
   change_notes:
     title: change_notes
-    client: none
+    client: full
     server: full
     columns:
     - name: new_change_note_id

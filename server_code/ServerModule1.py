@@ -39,18 +39,23 @@ def get_change_note_data():
          for r in changes]
     df1 = pd.DataFrame.from_dict(dicts)
     df1['change_date'] = pd.to_datetime(df1['change_date'], infer_datetime_format=True, utc=True )
-    df1['Year_Month'] = df1['change_date'].dt.to_period('M')
+    # df1['Year_Month'] = df1['change_date'].dt.to_period('M')
+    df1['year'] = df1['change_date'].dt.year
+    df1['month'] = df1['change_date'].dt.month
+    df1['YM'] = df1['year'].astype(str) + "-" + df1['month'].astype(str)
+     print()
     df1['Counts'] = 1
     print(df1)
-    grouped = df1.groupby(['Year_Month'])
+    grouped = df1.groupby(['YM'])
     print(grouped)
     res = grouped[['Counts']].agg(np.sum)
     res['index'] = range(len(res))
     res = res.reset_index()
-    line_plots = go.Scatter(x=res['Year_Month'] , y=res['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
+    line_plots = go.Scatter(x=res['YM'] , y=res['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
+  
     print(line_plots)
-    res.to_dict('records')
-    print(res)
+    # res.to_dict('records')
+    # print(res)
     # line_plots = go.Scatter(x=res['Year_Month'] , y=res['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
     return line_plots
 # df = pandas.DataFrame.from_dict(dicts)
