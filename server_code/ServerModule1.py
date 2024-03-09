@@ -33,28 +33,31 @@ def get_change_note_data(start_date):
     print(res)
     
   
-    changes = app_tables.change_notes.search(change_date = q.greater_than(start_date))
+    changes = app_tables.change_notes.search(change_date = q.greater_than(start_date), classid = 'Improvement')
     no_of_rows = len(changes)
     dicts = [{'change_date': r['change_date'], 'Class': r['classid']}
          for r in changes]
     df1 = pd.DataFrame.from_dict(dicts)
     df1['change_date'] = pd.to_datetime(df1['change_date'], infer_datetime_format=True, utc=True )
+    df1['ym-date'] = df1['change_date'].dt.strftime('%Y-%m')
+    print(df1['ym-date'])
     # df1['Year_Month'] = df1['change_date'].dt.to_period('M')
     df1['year'] = df1['change_date'].dt.year
     df1['month'] = df1['change_date'].dt.month
-    df1['YM'] = df1['year'].astype(str) + "-" + df1['month'].astype(str)
+    df1['YM'] = df1['year'].astype(str) + "-" + '0'+ df1['month'].astype(str)
     print(df1['YM'])
     df1['Counts'] = 1
-    df1[df1['year'] >= 2020]
+     
+    # df1.sort_values(by=['YM'])
   
     print(df1)
-    grouped = df1.groupby(['YM'])
+    grouped = df1.groupby(['ym-date'])
     print(grouped)
     res = grouped[['Counts']].agg(np.sum)
     res['index'] = range(len(res))
     res = res.reset_index()
     
-    line_plots = go.Scatter(x=res['YM'] , y=res['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
+    line_plots = go.Scatter(x=res['ym-date'] , y=res['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
   
     print(line_plots)
     # res.to_dict('records')
