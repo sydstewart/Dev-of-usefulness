@@ -12,7 +12,10 @@ def get_change_note_data():
     #read in 10000 rows of data 
     print('Syd')
     changes = app_tables.change_notes.search()
-  
+    Impcount = 0
+    for r in changes:
+       if r['classid']} == 'Improvement'
+            ImpCount = 1+ Impcount
     dicts = [{'change_date': r['change_date'], 'Class': r['classid']} for r in changes]
     df = pd.DataFrame.from_dict(dicts)
     df['change_date'] = pd.to_datetime(df['change_date'], infer_datetime_format=True, utc=True )
