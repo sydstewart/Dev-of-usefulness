@@ -1,5 +1,6 @@
 from ._anvil_designer import Form1Template
 from anvil import *
+import plotly.graph_objects as go
 import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -10,4 +11,5 @@ class Form1(Form1Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     changes = anvil.server.call('get_change_note_data')
+    self.plot_1.data = changes
     # Any code you write here will run before the form opens.

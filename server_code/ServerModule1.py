@@ -20,17 +20,16 @@ def get_change_note_data():
     # df["change_Date"] = pd.to_datetime(df["change_date"])
     # df['date'] = df['change_date'].dt.strftime('%Y/%m')
     print(df)
-   # line_plots = go.Scatter(x=df['Date_entered'], y=df['delta_work'], name='Delta Work Completed', marker=dict(color='#e50000'))
-    # df.index = pd.to_datetime(change_date.df_cdc.index, utc=True)
-    # df1["Change_Date"] = pd.to_datetime(df["change_date"])
-    # print(df1)
-    # df['year'] = df['change_date'].str[1:7]
-    # df['change_date'] = pd.to_datetime(df['change_date'])
+   
+
     df['Year'] = df['change_date'].dt.to_period('Y')
-    # # df['date'] = pd.to_datetime(df['change_date'])
-    # # df['year'], df['month'] = df['date'].dt.year, df['date'].dt.month
-    # # df['yyyy'] = pd.to_datetime(df['change_date']).dt.year (utc=True)
-    # # # df['mm'] = pd.to_datetime(df['change_date']).dt.month
-      
-    df = df.groupby('Year').count()
+    # df['Year'] = df['Year'].astype('int')
+  # selecting rows based on condition 
+    # df = df[df['Year'] >= 2020] 
+    options = ['Improvement'] 
+    df['Year_Month'] = df['change_date'].dt.to_period('M')
+    df = df[df['Class'].isin(options)] 
+    df = df.groupby('Year_Month').count() 
     print('df',df)
+    line_plots = go.Scatter(x=df['Year_Month'], y=df['count'], name='Improvements per month', marker=dict(color='#e50000'))
+    return line_plots
