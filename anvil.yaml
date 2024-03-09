@@ -126,6 +126,20 @@ db_schema:
     - name: due_date
       admin_ui: {width: 200}
       type: datetime
+  change_summary:
+    client: none
+    server: full
+    columns:
+    - name: classid
+      admin_ui: {width: 200, order: 0}
+      type: string
+    - name: Year_Month
+      admin_ui: {width: 200, order: 2}
+      type: string
+    - name: ImpCount
+      admin_ui: {width: 200, order: 3}
+      type: number
+    title: change_summary
 name: Usefulness
 startup_form: Form1
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
