@@ -76,7 +76,7 @@ def get_change_note_data(start_date):
     res = pd.merge(all_dates, res, how="left", on='ym-date').fillna(0)
 
   # =========================================================
-    res['mean'} = res['Counts']).mean()  
+    res['mean'] = res['Counts'].mean()
     summary_records ={}
     summary_records = res.to_dict(orient="records")
     app_tables.improvements_by_month.delete_all_rows()
@@ -85,7 +85,7 @@ def get_change_note_data(start_date):
       
     print('summary_records', summary_records)
     line_plots = go.Scatter(x=res['ym-date'] , y=res['Counts'],mode='lines+markers', name='Improvements per month', marker=dict(color='#e50000'))
-    line_plots.add_scatter(x=res['ym-date'], y=res['mean'])
+    line_plots.add_go.Scatter(x=res['ym-date'], y=res['mean'])
     print(line_plots)
 
     return line_plots, summary_records
