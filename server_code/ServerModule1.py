@@ -40,7 +40,7 @@ def get_change_note_data(start_date):
     print(res)
     
   
-    changes = app_tables.change_notes.search(change_date = q.greater_than(start_date), classid = 'Improvement')
+    changes = app_tables.change_notes.search( tables.order_by("change_date", ascending=False),change_date = q.greater_than(start_date), classid = 'Improvement')
     no_of_rows = len(changes)
     dicts = [{'change_date': r['change_date'], 'Class': r['classid']}
          for r in changes]
@@ -71,7 +71,7 @@ def get_change_note_data(start_date):
     
     res["ym-date"] = pd.to_datetime(res["ym-date"]) 
     
-    all_dates = pd.DataFrame({"ym-date":pd.date_range(start=res['ym-date'].min(),end=d1,freq="MS")})
+    all_dates = pd.DataFrame({"ym-date":pd.date_range(start=res['ym-date'].min(),end=res['ym-date'].max(),freq="MS")})
     
     res = pd.merge(all_dates, res, how="left", on='ym-date').fillna(0)
 
@@ -79,6 +79,9 @@ def get_change_note_data(start_date):
   
     summary_records ={}
     summary_records = res.to_dict(orient="records")
+    for row in summary_records:
+      app_tables.improvements_by_month.add_row(ym_date =row['ym-date'], Counts= row['Counts']) 
+      
     print('summary_records', summary_records)
     line_plots = go.Scatter(x=res['ym-date'] , y=res['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
   

@@ -154,6 +154,20 @@ db_schema:
       admin_ui: {width: 200, order: 2}
       type: datetime
     title: chart_definition
+  improvements_by_month:
+    client: search
+    server: full
+    columns:
+    - name: ym_date
+      admin_ui: {order: 0, width: 200}
+      type: datetime
+    - name: Counts
+      admin_ui: {width: 200, order: 1}
+      type: number
+    - name: Comment
+      admin_ui: {width: 200, order: 2}
+      type: string
+    title: Improvements_by_month
 name: Usefulness
 startup_form: Form1
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}

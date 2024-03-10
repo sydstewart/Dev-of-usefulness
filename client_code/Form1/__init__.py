@@ -19,6 +19,6 @@ class Form1(Form1Template):
     start_date =anvil.server.call('get_chart_settings',1)  
     self.text_box_1.text = start_date
     line_plots, summary_records  = anvil.server.call('get_change_note_data', start_date)
-    self.repeating_panel_1.items = summary_records
+    self.repeating_panel_1.items = app_tables.improvements_by_month.search(tables.order_by("ym_date", ascending=False))
     self.plot_1.data = line_plots
     pass

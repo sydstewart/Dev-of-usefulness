@@ -1,3 +1,7 @@
 is_package: true
 container: {type: DataRowPanel}
-components: []
+components:
+- name: text_box_1
+  properties: {}
+  type: TextBox
+  layout_properties: {column: TUWKOQ}
