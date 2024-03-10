@@ -65,7 +65,7 @@ def get_change_note_data(start_date):
     res['index'] = range(len(res))
     res = res.reset_index()
     
-  #=========================================================
+  # Fill in Missing months with zero change Notes =========================================================
     today = date.today()
     d1 = today.strftime("%Y-%m")
     
@@ -75,41 +75,53 @@ def get_change_note_data(start_date):
     
     res = pd.merge(all_dates, res, how="left", on='ym-date').fillna(0)
 
-  # =========================================================
+  # =====Calculate Range and Range Mean =========================================================
     res['mean'] = res['Counts'].mean()
+    Mean = res['Counts'].mean()
     res['Range']=abs(res['Counts'] -res['Counts'].shift(1))
     res['Range'].dropna()
     print('Ranges', res['Range'])
     res['rangemean']  = res['Range'].mean()
+    RangeMean =  res['Range'].mean() 
     print('rangemean=', res['Range'].mean())
+    
     res['median'] = res['Range'].median()
-    print('median of Range=', res['Range'].median())
-    # UCLMedian = res['median'] * 3.14 + res['Range'].mean()
+    RangeMedian= res['Range'].median()
+    print('median of Range=', RangeMedian)
+  
+  #== Calcuate UCLs ========================================================
+    UCLMedian = (RangeMedian  * 3.14) + Mean
+    print(' UCL using Range Median =', UCLMedian)
+    UCLMean = RangeMean *2.66 + Mean
+    print(' UCL using Range Mean =', UCLMean)
+    
+  #====== prepare records for display in form =======        
     summary_records ={}
     summary_records = res.to_dict(orient="records")
     app_tables.improvements_by_month.delete_all_rows()
     for row in summary_records:
       app_tables.improvements_by_month.add_row(ym_date =row['ym-date'], Counts= row['Counts']) 
-      
     print('summary_records', summary_records)
+
+  #==== prepare Chart +++++++++++++++++++++++++++++++++++++++++++++++
     line_plots = [
       
       go.Scatter(x=res['ym-date'] , y=res['Counts'],mode='lines+markers', name='Improvements per month', marker=dict(color='#e50000')),
     
-      go.Scatter(x=res['ym-date'], y=res['mean'],  name='Mean of Improvements per month'),
+      go.Scatter(x=res['ym-date'], y=res['mean'],  name='Mean of Improvements per month ='  + str(round(Mean,1))),
 
       go.Scatter(x=res['ym-date'], 
                  y=(res['rangemean'] * 2.66) + res['mean'], 
-                 name='UCL based on rangemean  ' ),
+                 name='UCL based on range mean = ' + str(round(UCLMean,1))),
 
-     go.Scatter(x=res['ym-date'], 
+      go.Scatter(x=res['ym-date'], 
                  y=(res['median'] * 3.14) + res['mean'], 
-                 name='UCL based on median ' ),
+                 name='UCL based on range median  =' + str(round(UCLMedian,1)) ),
                  
                  ]
   
     print(line_plots)
-
+   # ============returns==================================
     return line_plots, summary_records
 
 
