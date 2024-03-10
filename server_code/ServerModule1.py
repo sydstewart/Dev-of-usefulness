@@ -84,12 +84,10 @@ def get_change_note_data(start_date):
       app_tables.improvements_by_month.add_row(ym_date =row['ym-date'], Counts= row['Counts']) 
       
     print('summary_records', summary_records)
-    line_plots = go.Scatter(x=res['ym-date'] , y=res['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
-  
+    line_plots = go.Scatter(x=res['ym-date'] , y=res['Counts'],mode='lines+markers', name='Improvements per month', marker=dict(color='#e50000'))
+
     print(line_plots)
-    # res.to_dict('records')
-    # print(res)
-    # line_plots = go.Scatter(x=res['Year_Month'] , y=res['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
+
     return line_plots, summary_records
 
 
