@@ -62,10 +62,13 @@ def get_change_note_data(start_date):
     grouped = df1.groupby(['ym-date'])
     print(grouped)
     res = grouped[['Counts']].agg(np.sum)
+    res['index'] = range('2020-01','2024-03'))
     res['index'] = range(len(res))
     res = res.reset_index()
+    # idx = pd.date_range('2020-01', '2024-03')
+  
     summary_records ={}
-    summary_records = res.to_dict()
+    summary_records = res.to_dict(orient="records")
     print('summary_records', summary_records)
     line_plots = go.Scatter(x=res['ym-date'] , y=res['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
   
@@ -73,7 +76,7 @@ def get_change_note_data(start_date):
     # res.to_dict('records')
     # print(res)
     # line_plots = go.Scatter(x=res['Year_Month'] , y=res['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
-    return line_plots
+    return line_plots, summary_records
 
 
 
