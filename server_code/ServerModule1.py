@@ -45,6 +45,7 @@ def get_change_note_data(start_date):
     df1['year'] = df1['change_date'].dt.year
     df1['month'] = df1['change_date'].dt.month
     df1['YM'] = df1['year'].astype(str) + "-" + '0'+ df1['month'].astype(str)
+    df1 = df1.fillna(0)
     print(df1['YM'])
     df1['Counts'] = 1
      
