@@ -14,11 +14,11 @@ class Form1(Form1Template):
    
     # Any code you write here will run before the form opens.
 
-  def date_picker_1_change(self, **event_args):
-    """This method is called when the selected date changes"""
-    t = app_tables.chart_definition.seaarch(Chart_no = 1)
-    self.date_picker_1.date = t['start_date']
-    start_date = self.date_picker_1.date
+  # def date_picker_1_change(self, **event_args):
+  #   """This method is called when the selected date changes"""
+    t = app_tables.chart_definition.search(Chart_no = 1)
+    self.text_box_1.text = t['start_date']
+    start_date = self.text_box_1.text
     line_plots = anvil.server.call('get_change_note_data', start_date)
     self.plot_1.data = line_plots
     pass

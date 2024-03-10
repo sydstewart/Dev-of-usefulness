@@ -141,7 +141,7 @@ db_schema:
       type: number
     title: change_summary
   chart_definition:
-    client: none
+    client: full
     server: full
     columns:
     - name: title
