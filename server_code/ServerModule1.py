@@ -84,7 +84,7 @@ def get_change_note_data(start_date):
     print('rangemean=', res['Range'].mean())
     res['median'] = res['Range'].median()
     print('median of Range=', res['Range'].median())
-  
+    # UCLMedian = res['median'] * 3.14 + res['Range'].mean()
     summary_records ={}
     summary_records = res.to_dict(orient="records")
     app_tables.improvements_by_month.delete_all_rows()
@@ -100,11 +100,11 @@ def get_change_note_data(start_date):
 
       go.Scatter(x=res['ym-date'], 
                  y=(res['rangemean'] * 2.66) + res['mean'], 
-                 name='UCL based on rangemean'),
+                 name='UCL based on rangemean  ' ),
 
-            go.Scatter(x=res['ym-date'], 
+     go.Scatter(x=res['ym-date'], 
                  y=(res['median'] * 3.14) + res['mean'], 
-                 name='UCL based on median')
+                 name='UCL based on median ' ),
                  
                  ]
   
