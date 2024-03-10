@@ -62,10 +62,18 @@ def get_change_note_data(start_date):
     grouped = df1.groupby(['ym-date'])
     print(grouped)
     res = grouped[['Counts']].agg(np.sum)
-    res['index'] = range('2020-01','2024-03'))
     res['index'] = range(len(res))
     res = res.reset_index()
-    # idx = pd.date_range('2020-01', '2024-03')
+    today =
+    d1 = today.strftime("%Y-%m-01")
+    
+    res["ym-date"] = pd.to_datetime(res["ym-date"]) 
+    
+    all_dates = pd.DataFrame({"ym-date":pd.date_range(start=res['ym-date'].min(),end=d1,freq="MS")})
+    
+    res = pd.merge(all_dates, res, how="left", on='ym-date').fillna(0)
+
+
   
     summary_records ={}
     summary_records = res.to_dict(orient="records")
