@@ -80,8 +80,8 @@ def get_change_note_data(start_date):
     res['Range']=abs(res['Counts'] -res['Counts'].shift(1))
     res['Range'].dropna()
     print('Ranges', res['Range'])
-    rangemean  = res['Range'].mean()
-    print('rangemean=', rangemean)
+    res['rangemean']  = res['Range'].mean()
+    print('rangemean=', res['Range'].mean())
 
   
     summary_records ={}
@@ -97,7 +97,9 @@ def get_change_note_data(start_date):
     
       go.Scatter(x=res['ym-date'], y=res['mean'],  name='Mean of Improvements per month'),
 
-      # go.Scatter(x=res['ym-date'], y=res['rangemean'] * 3.14,  name='UCL'))
+      go.Scatter(x=res['ym-date'], 
+                 y=res['rangemean'] * 3.14, 
+                 name='UCL')
                  
                  ]
   
