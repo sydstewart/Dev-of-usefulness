@@ -16,9 +16,8 @@ class Form1(Form1Template):
 
   # def date_picker_1_change(self, **event_args):
   #   """This method is called when the selected date changes"""
-    t = app_tables.chart_definition.search(Chart_no = 1)
-    self.text_box_1.text = t['start_date']
-    start_date = self.text_box_1.text
-    line_plots = anvil.server.call('get_change_note_data', start_date)
+    start_date =anvil.server.call('get_chart_settings',1)  
+    line_plots  = anvil.server.call('get_change_note_data', start_date)
+    # self.repeating_panel_1.items = summary_records
     self.plot_1.data = line_plots
     pass

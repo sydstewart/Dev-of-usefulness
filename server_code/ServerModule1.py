@@ -6,6 +6,13 @@ import pandas as pd
 import plotly.graph_objects as go
 from datetime import datetime, time , date , timedelta
 
+@anvil.server.callable
+def get_chart_settings(chartno):        
+    t = app_tables.chart_definition.get(chart_no = chartno)
+    title =  t['title']
+    start_date =t['start_date']
+    return start_date
+
 
 @anvil.server.callable
 def get_change_note_data(start_date):
@@ -57,7 +64,9 @@ def get_change_note_data(start_date):
     res = grouped[['Counts']].agg(np.sum)
     res['index'] = range(len(res))
     res = res.reset_index()
-    
+    summary_records ={}
+    summary_records = res.to_dict()
+    print('summary_records', summary_records)
     line_plots = go.Scatter(x=res['ym-date'] , y=res['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
   
     print(line_plots)
@@ -65,6 +74,11 @@ def get_change_note_data(start_date):
     # print(res)
     # line_plots = go.Scatter(x=res['Year_Month'] , y=res['Counts'], name='Improvements per month', marker=dict(color='#e50000'))
     return line_plots
+
+
+
+
+  
 # df = pandas.DataFrame.from_dict(dicts)
   #   Impcount = 0
   #   # for row in changes:
