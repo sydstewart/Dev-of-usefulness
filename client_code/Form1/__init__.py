@@ -16,6 +16,8 @@ class Form1(Form1Template):
 
   def date_picker_1_change(self, **event_args):
     """This method is called when the selected date changes"""
+    t = app_tables.chart_definition.seaarch(Chart_no = 1)
+    self.date_picker_1.date = t['start_date']
     start_date = self.date_picker_1.date
     line_plots = anvil.server.call('get_change_note_data', start_date)
     self.plot_1.data = line_plots

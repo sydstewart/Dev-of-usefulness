@@ -140,6 +140,20 @@ db_schema:
       admin_ui: {width: 200, order: 3}
       type: number
     title: change_summary
+  chart_definition:
+    client: none
+    server: full
+    columns:
+    - name: title
+      admin_ui: {width: 200, order: 0}
+      type: string
+    - name: Chart_no
+      admin_ui: {width: 200, order: 1}
+      type: number
+    - name: start_date
+      admin_ui: {width: 200, order: 2}
+      type: datetime
+    title: chart_definition
 name: Usefulness
 startup_form: Form1
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
