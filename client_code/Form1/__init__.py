@@ -13,7 +13,7 @@ class Form1(Form1Template):
     self.init_components(**properties)
        # Specify the layout
     layout = {
-      'title': 'Improvement Change Notes Raised per month ',
+      'title': '<b>Improvement Change Notes Raised per month</b> ',
        
       'yaxis': {'title': 'Value'},
  
