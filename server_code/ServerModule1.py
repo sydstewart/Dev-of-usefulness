@@ -64,8 +64,10 @@ def get_change_note_data(start_date):
     res = grouped[['Counts']].agg(np.sum)
     res['index'] = range(len(res))
     res = res.reset_index()
-    today =
-    d1 = today.strftime("%Y-%m-01")
+    
+  #=========================================================
+    today = date.today()
+    d1 = today.strftime("%Y-%m")
     
     res["ym-date"] = pd.to_datetime(res["ym-date"]) 
     
@@ -73,7 +75,7 @@ def get_change_note_data(start_date):
     
     res = pd.merge(all_dates, res, how="left", on='ym-date').fillna(0)
 
-
+  # =========================================================
   
     summary_records ={}
     summary_records = res.to_dict(orient="records")

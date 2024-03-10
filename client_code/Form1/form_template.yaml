@@ -23,7 +23,7 @@ components:
   - name: data_grid_1
     properties:
       columns:
-      - {id: JKSDUP, title: Year_Month, data_key: ym-date}
+      - {id: JKSDUP, title: Year_Month Commencing, data_key: ym-date}
       - {id: VJQQOR, title: No of Improvement Change Notes, data_key: Counts}
     type: DataGrid
     components:
