@@ -79,6 +79,7 @@ def get_change_note_data(start_date):
   
     summary_records ={}
     summary_records = res.to_dict(orient="records")
+    app_tables.improvements_by_month.delete_all_rows()
     for row in summary_records:
       app_tables.improvements_by_month.add_row(ym_date =row['ym-date'], Counts= row['Counts']) 
       
