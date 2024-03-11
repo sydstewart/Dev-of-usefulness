@@ -21,13 +21,26 @@ components:
     type: Plot
     layout_properties: {grid_position: 'LZYJFS,ZPFLFF', full_width_row: true}
   - type: DatePicker
-    properties: {}
+    properties: {pick_time: false}
     name: date_picker_1
     layout_properties: {grid_position: 'UKDTWQ,PASKOD'}
   - type: DatePicker
-    properties: {}
+    properties: {pick_time: false}
     name: date_picker_2
     layout_properties: {grid_position: 'UKDTWQ,YEDLQW'}
+  - name: button_1
+    properties: {text: Show changes}
+    type: Button
+    layout_properties: {grid_position: 'CKQPNE,EYPGGG'}
+    event_bindings: {click: button_1_click}
+  - name: label_2
+    properties: {text: No of Changes Found}
+    type: Label
+    layout_properties: {grid_position: 'MALHSB,PHKOXE'}
+  - name: text_box_2
+    properties: {}
+    type: TextBox
+    layout_properties: {grid_position: 'MALHSB,TNLFUM'}
   - type: DataGrid
     properties:
       role: null
