@@ -4,7 +4,7 @@ container:
   properties: {html: '@theme:standard-page.html'}
 components:
 - type: ColumnPanel
-  properties: {col_widths: '{"UBMUMN":15,"YHLRVQ":45}'}
+  properties: {col_widths: '{"UBMUMN":10,"YHLRVQ":30,"KHGYIL":10,"DXCDJL":10}'}
   name: content_panel
   layout_properties: {slot: default}
   components:
@@ -12,10 +12,79 @@ components:
     properties: {text: Start_Date}
     type: Label
     layout_properties: {grid_position: 'WZKNFZ,UBMUMN'}
+  - type: DatePicker
+    properties: {}
+    name: date_picker_3
+    layout_properties: {grid_position: 'WZKNFZ,KHGYIL'}
+  - type: Label
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: Finish date, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_5
+    layout_properties: {grid_position: 'WZKNFZ,DXCDJL'}
   - name: text_box_1
     properties: {}
     type: TextBox
     layout_properties: {grid_position: 'WZKNFZ,YHLRVQ'}
+  - type: Label
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: Type of Change, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_3
+    layout_properties: {grid_position: 'GWILPX,FPNVQG'}
+  - type: DropDown
+    properties:
+      role: null
+      align: full
+      tooltip: ''
+      placeholder: ''
+      border: ''
+      enabled: true
+      foreground: ''
+      items: [Improvement, Defect]
+      visible: true
+      font_size: null
+      font: ''
+      spacing_above: small
+      spacing_below: small
+      italic: false
+      background: ''
+      bold: false
+      underline: false
+      include_placeholder: true
+    name: drop_down_1
+    layout_properties: {grid_position: 'GWILPX,EITHSQ'}
+  - type: Label
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: Stage, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_4
+    layout_properties: {grid_position: 'GWILPX,AEGWZK'}
+  - type: DropDown
+    properties:
+      role: null
+      align: full
+      tooltip: ''
+      placeholder: ''
+      border: ''
+      enabled: true
+      foreground: ''
+      items: [Active, Released, Rejected]
+      visible: true
+      font_size: null
+      font: ''
+      spacing_above: small
+      spacing_below: small
+      italic: false
+      background: ''
+      bold: false
+      underline: false
+      include_placeholder: false
+    name: drop_down_2
+    layout_properties: {grid_position: 'GWILPX,AGAZYC'}
   - name: plot_1
     properties: {}
     type: Plot
