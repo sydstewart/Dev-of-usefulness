@@ -23,6 +23,8 @@ class Form1(Form1Template):
     self.text_box_1.text = start_date
     line_plots, summary_records  = anvil.server.call('get_change_note_data', start_date)
     self.repeating_panel_1.items = app_tables.improvements_by_month.search(tables.order_by("ym_date", ascending=False))
+    if self.date_picker_1.date and self.date_picker_2.date:
+         self.repeating_panel_2.items = app_tables.change_notes.search(change_date=q.between(self.date_picker_1.date, self.date_picker_2.date))
     self.plot_1.data = line_plots
     self.plot_1.layout = layout
     pass

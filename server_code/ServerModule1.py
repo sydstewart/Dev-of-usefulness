@@ -61,6 +61,7 @@ def get_change_note_data(start_date):
     print(df1)
     grouped = df1.groupby(['ym-date'])
     print(grouped)
+        
     res = grouped[['Counts']].agg(np.sum)
     res['index'] = range(len(res))
     res = res.reset_index()
