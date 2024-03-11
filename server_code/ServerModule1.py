@@ -40,7 +40,7 @@ def get_change_note_data(start_date):
     print(res)
     
   
-    changes = app_tables.change_notes.search( tables.order_by("change_date", ascending=False),change_date = q.greater_than(start_date), classid = 'Improvement')
+    changes = app_tables.change_notes.search( tables.order_by("change_date", ascending=False),change_date = q.greater_than(start_date), classid = 'Improvement', stage='Released')
     no_of_rows = len(changes)
     dicts = [{'change_date': r['change_date'], 'Class': r['classid']}
          for r in changes]
@@ -96,13 +96,13 @@ def get_change_note_data(start_date):
     UCLMean = RangeMean *2.66 + Mean
     print(' UCL using Range Mean =', UCLMean)
     
-  #====== prepare records for display in form =======        
-    summary_records ={}
-    summary_records = res.to_dict(orient="records")
-    app_tables.improvements_by_month.delete_all_rows()
-    for row in summary_records:
-      app_tables.improvements_by_month.add_row(ym_date =row['ym-date'], Counts= row['Counts']) 
-    print('summary_records', summary_records)
+  # #====== prepare records for display in form =======        
+  #   summary_records ={}
+  #   summary_records = res.to_dict(orient="records")
+  #   # app_tables.improvements_by_month.delete_all_rows()
+  #   # for row in summary_records:
+  #   #   app_tables.improvements_by_month.add_row(ym_date =row['ym-date'], Counts= row['Counts']) 
+  #   # print('summary_records', summary_records)
 
   #==== prepare Chart +++++++++++++++++++++++++++++++++++++++++++++++
     line_plots = [
@@ -123,7 +123,7 @@ def get_change_note_data(start_date):
   
     print(line_plots)
    # ============returns==================================
-    return line_plots, summary_records
+    return line_plots #, summary_records
 
 
 
