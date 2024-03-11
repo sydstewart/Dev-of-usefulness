@@ -14,7 +14,7 @@ components:
     layout_properties: {grid_position: 'WZKNFZ,UBMUMN'}
   - type: DatePicker
     properties: {}
-    name: date_picker_3
+    name: start_date_picker
     layout_properties: {grid_position: 'WZKNFZ,KHGYIL'}
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
@@ -23,6 +23,10 @@ components:
       underline: false, icon: ''}
     name: label_5
     layout_properties: {grid_position: 'WZKNFZ,DXCDJL'}
+  - type: DatePicker
+    properties: {}
+    name: end_date_picker
+    layout_properties: {grid_position: 'WZKNFZ,CGKJJE'}
   - name: text_box_1
     properties: {}
     type: TextBox
@@ -54,7 +58,7 @@ components:
       bold: false
       underline: false
       include_placeholder: true
-    name: drop_down_1
+    name: class_dropdown
     layout_properties: {grid_position: 'GWILPX,EITHSQ'}
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
@@ -83,7 +87,7 @@ components:
       bold: false
       underline: false
       include_placeholder: false
-    name: drop_down_2
+    name: stage_dropdown
     layout_properties: {grid_position: 'GWILPX,AGAZYC'}
   - name: plot_1
     properties: {}
