@@ -16,7 +16,7 @@ def get_chart_settings(chartno):
 
 
 @anvil.server.callable
-def get_change_note_data(start_date):
+def get_change_note_data(start_date, classid):
     #read in 10000 rows of data 
     print('Syd')
     import pandas as pd
@@ -41,10 +41,10 @@ def get_change_note_data(start_date):
     print(res)
     
   
-    changes = app_tables.change_notes.search( tables.order_by("change_date", ascending=False),change_date = q.greater_than(start_date), classid = 'Improvement', stage ='Released')
+    changes = app_tables.change_notes.search( tables.order_by("change_date", ascending=False),change_date = q.greater_than(start_date), classid = classid)
     no_of_rows = len(changes)
     dicts = [{'change_date': r['change_date'], 'Class': r['classid']}
-         for r in changes]
+        for r in changes]
     df1 = pd.DataFrame.from_dict(dicts)
     df1['change_date'] = pd.to_datetime(df1['change_date'], infer_datetime_format=True, utc=True )
     df1['ym-date'] = df1['change_date'].dt.strftime('%Y-%m')
@@ -56,7 +56,7 @@ def get_change_note_data(start_date):
     df1 = df1.fillna(0)
     print(df1['YM'])
     df1['Counts'] = 1
-     
+    
     # df1.sort_values(by=['YM'])
   
     print(df1)
@@ -117,27 +117,27 @@ def get_change_note_data(start_date):
       go.Scatter(x=res['ym-date'], y=res['mean'],  name='Mean of Improvements per month ='  + str(round(Mean,1))),
 
       go.Scatter(x=res['ym-date'], 
-                 y=(res['rangemean'] * 2.66) + res['mean'], 
-                 name='UCL based on range mean = ' + str(round(UCLMean,1))),
+                y=(res['rangemean'] * 2.66) + res['mean'], 
+                name='UCL based on range mean = ' + str(round(UCLMean,1))),
 
       go.Scatter(x=res['ym-date'], 
-                 y=(res['median'] * 3.14) + res['mean'], 
-                 name='UCL based on range median  =' + str(round(UCLMedian,1)) ),
+                y=(res['median'] * 3.14) + res['mean'], 
+                name='UCL based on range median  =' + str(round(UCLMedian,1)) ),
       
       go.Scatter(x=res['ym-date'], 
-                 y= ((res['sqmean'])) * 3 + res['mean'], 
-                 name='UCL based on c-Chart  =' + str(round(UCLcChart,1)) )
-                 
-                 ]
+                y= ((res['sqmean'])) * 3 + res['mean'], 
+                name='UCL based on c-Chart  =' + str(round(UCLcChart,1)) )
+                
+                ]
   
     print(line_plots)
-   # ============returns==================================
+  # ============returns==================================
     return line_plots, summary_records
 
 
 
 
-  
+
 # df = pandas.DataFrame.from_dict(dicts)
   #   Impcount = 0
   #   # for row in changes:
