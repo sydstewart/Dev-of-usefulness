@@ -38,7 +38,7 @@ def get_change_note_data(startdate): #, enddate, class, stage):
     res = res.reset_index()
     res.to_dict('records')
     print(res)
-    start_date = '2020-01-01'
+    start_date = 2020-01-01 00:00:00+00:00
   
     changes = app_tables.change_notes.search( tables.order_by("change_date", ascending=False),change_date = q.greater_than(start_date), classid = 'Improvement', stage='Released')
     no_of_rows = len(changes)
