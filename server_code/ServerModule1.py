@@ -15,7 +15,7 @@ def get_chart_settings(chartno):
 
 
 @anvil.server.callable
-def get_change_note_data(start_date):
+def get_change_note_data(startdate): #, enddate, class, stage):
     #read in 10000 rows of data 
     print('Syd')
     import pandas as pd
@@ -38,7 +38,7 @@ def get_change_note_data(start_date):
     res = res.reset_index()
     res.to_dict('records')
     print(res)
-    
+    start_date = '2020-01-01'
   
     changes = app_tables.change_notes.search( tables.order_by("change_date", ascending=False),change_date = q.greater_than(start_date), classid = 'Improvement', stage='Released')
     no_of_rows = len(changes)
@@ -95,6 +95,7 @@ def get_change_note_data(start_date):
     print(' UCL using Range Median =', UCLMedian)
     UCLMean = RangeMean *2.66 + Mean
     print(' UCL using Range Mean =', UCLMean)
+    UCLcChart = (sqrt(res('mean') * 3) + res(['mean']))
     
   # #====== prepare records for display in form =======        
   #   summary_records ={}
@@ -118,6 +119,10 @@ def get_change_note_data(start_date):
       go.Scatter(x=res['ym-date'], 
                  y=(res['median'] * 3.14) + res['mean'], 
                  name='UCL based on range median  =' + str(round(UCLMedian,1)) ),
+      
+      go.Scatter(x=res['ym-date'], 
+                 y=(sqrt(res['mean'] * 3) + res['mean']), 
+                 name='UCL based on c-Chart  =' + str(round(UCLcChart,1)) )
                  
                  ]
   

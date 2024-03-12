@@ -21,10 +21,7 @@ class Form1(Form1Template):
 
     start_date =anvil.server.call('get_chart_settings',1)  
     self.text_box_1.text = start_date
-    line_plots  = anvil.server.call('get_change_note_data', self.start_date_picker.date,
-                                                            self.end_date_picker.date, 
-                                                            self.class_dropdown.selected_value, 
-                                                            self.stge_dropdown.selected_value)
+    line_plots  = anvil.server.call('get_change_note_data', start_date) #, self.end_date_picker.date, self.class_dropdown.selected_value, self.stage_dropdown.selected_value)
     
     self.repeating_panel_1.items = app_tables.improvements_by_month.search(tables.order_by("ym_date", ascending=False))
     self.date_picker_1.date
