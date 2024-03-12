@@ -21,7 +21,7 @@ def get_change_note_data(start_date, classid):
     print('Syd')
     import pandas as pd
     import numpy as np
-
+    print('classid', classid)
     data = [
         {'group_name': 'GROUP 1', 'client': 'CLIENT 1', 'messages': 100, 'supplier': 'SUP 1', 'blocked': 0}, 
         {'group_name': 'GROUP 2', 'client': 'CLIENT 1', 'messages': 200, 'supplier': 'SUP 1', 'blocked': 27}, 
