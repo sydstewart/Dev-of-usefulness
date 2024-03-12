@@ -104,7 +104,8 @@ def get_change_note_data(start_date):
 
             go.Scatter(x=res['ym-date'], 
                  y=(res['median'] * 3.14) + res['mean'], 
-                 name='UCL based on median')
+                 name='UCL based on median').alignmentgroup
+      UCLcChart = (sqrt(res('mean') * 3) + res(['mean']))
                  
                  ]
   
