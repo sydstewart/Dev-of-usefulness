@@ -112,17 +112,17 @@ def get_change_note_data(start_date, classid):
   #==== prepare Chart +++++++++++++++++++++++++++++++++++++++++++++++
     line_plots = [
       
-      go.Scatter(x=res['ym-date'] , y=res['Counts'],mode='lines+markers', name='Improvements per month', marker=dict(color='#e50000')),
+      go.Scatter(x=res['ym-date'] , y=res['Counts'],mode='lines+markers', name='Changes per month', marker=dict(color='#e50000')),
     
-      go.Scatter(x=res['ym-date'], y=res['mean'],  name='Mean of Improvements per month ='  + str(round(Mean,1))),
+      go.Scatter(x=res['ym-date'], y=res['mean'],  name='Mean of Changes per month ='  + str(round(Mean,1))),
 
-      go.Scatter(x=res['ym-date'], 
-                y=(res['rangemean'] * 2.66) + res['mean'], 
-                name='UCL based on range mean = ' + str(round(UCLMean,1))),
+      # go.Scatter(x=res['ym-date'], 
+      #           y=(res['rangemean'] * 2.66) + res['mean'], 
+      #           name='UCL based on range mean = ' + str(round(UCLMean,1))),
 
-      go.Scatter(x=res['ym-date'], 
-                y=(res['median'] * 3.14) + res['mean'], 
-                name='UCL based on range median  =' + str(round(UCLMedian,1)) ),
+      # go.Scatter(x=res['ym-date'], 
+      #           y=(res['median'] * 3.14) + res['mean'], 
+      #           name='UCL based on range median  =' + str(round(UCLMedian,1)) ),
       
       go.Scatter(x=res['ym-date'], 
                 y= ((res['sqmean'])) * 3 + res['mean'], 

@@ -18,9 +18,9 @@ class Form1(Form1Template):
   def drop_down_1_change(self, **event_args):
     """This method is called when an item is selected"""
       # Specify the layout
-    titletype =  ',
+     
     layout = {
-      'title': '<b>' + titletype + '</b>' ,
+      'title': '<b>' + self.drop_down_1.selected_value +  ' Change Notes per month </b>' ,
        
       'yaxis': {'title': 'Value'},
  
