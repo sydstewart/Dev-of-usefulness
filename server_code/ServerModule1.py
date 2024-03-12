@@ -5,6 +5,7 @@ import anvil.server
 import pandas as pd
 import plotly.graph_objects as go
 from datetime import datetime, time , date , timedelta
+import math
 
 @anvil.server.callable
 def get_chart_settings(chartno):        
@@ -40,7 +41,7 @@ def get_change_note_data(start_date):
     print(res)
     
   
-    changes = app_tables.change_notes.search( tables.order_by("change_date", ascending=False),change_date = q.greater_than(start_date), classid = 'Improvement')
+    changes = app_tables.change_notes.search( tables.order_by("change_date", ascending=False),change_date = q.greater_than(start_date), classid = 'Improvement', s)
     no_of_rows = len(changes)
     dicts = [{'change_date': r['change_date'], 'Class': r['classid']}
          for r in changes]
@@ -78,7 +79,10 @@ def get_change_note_data(start_date):
 
   # =====Calculate Range and Range Mean =========================================================
     res['mean'] = res['Counts'].mean()
+    
     Mean = res['Counts'].mean()
+    sqmean = math.sqrt(Mean)
+    res['sqmean']= sqmean
     res['Range']=abs(res['Counts'] -res['Counts'].shift(1))
     res['Range'].dropna()
     print('Ranges', res['Range'])
@@ -95,7 +99,8 @@ def get_change_note_data(start_date):
     print(' UCL using Range Median =', UCLMedian)
     UCLMean = RangeMean *2.66 + Mean
     print(' UCL using Range Mean =', UCLMean)
-    
+    UCLcChart = (math.sqrt(Mean) * 3) + Mean
+  
   #====== prepare records for display in form =======        
     summary_records ={}
     summary_records = res.to_dict(orient="records")
@@ -118,6 +123,10 @@ def get_change_note_data(start_date):
       go.Scatter(x=res['ym-date'], 
                  y=(res['median'] * 3.14) + res['mean'], 
                  name='UCL based on range median  =' + str(round(UCLMedian,1)) ),
+      
+      go.Scatter(x=res['ym-date'], 
+                 y= ((res['sqmean'])) * 3 + res['mean'], 
+                 name='UCL based on c-Chart  =' + str(round(UCLcChart,1)) )
                  
                  ]
   
