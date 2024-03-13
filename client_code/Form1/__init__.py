@@ -5,7 +5,7 @@ import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
- 
+from..searc
 
 class Form1(Form1Template):
   def __init__(self, **properties):
@@ -39,4 +39,8 @@ class Form1(Form1Template):
     
   def change_type_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
+    search_using_kwargs(self)
+
+  def startdate_textbox_pressed_enter(self, **event_args):
+    """This method is called when the user presses Enter in this text box"""
     search_using_kwargs(self)
