@@ -14,10 +14,7 @@ class Form1(Form1Template):
     start_date =anvil.server.call('get_chart_settings',1)  
     self.text_box_1.text = start_date
     
-
-  def drop_down_1_change(self, **event_args):
-    """This method is called when an item is selected"""
-      # Specify the layout
+  
      
     layout = {
       'title': '<b>' + self.drop_down_1.selected_value +  ' Change Notes per month </b>' ,
@@ -35,3 +32,11 @@ class Form1(Form1Template):
     self.plot_1.data = line_plots
     self.plot_1.layout = layout
     pass
+
+  def stage_dropdown_change(self, **event_args):
+    """This method is called when an item is selected"""
+    search_using_kwargs(self)
+    
+  def change_type_dropdown_change(self, **event_args):
+    """This method is called when an item is selected"""
+    search_using_kwargs(self)
