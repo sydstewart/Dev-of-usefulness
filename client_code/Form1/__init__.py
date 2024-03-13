@@ -16,7 +16,7 @@ class Form1(Form1Template):
     start_date =anvil.server.call('get_chart_settings',1)  
 
     print(start_date)
-    self.date_picker_3.datetime = datetime.date.today() + datetime.timedelta(days=600)
+    # self.date_picker_3.datetime = datetime.date.today() + datetime.timedelta(days=600)
     
 
   def stage_dropdown_change(self, **event_args):

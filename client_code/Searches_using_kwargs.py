@@ -14,7 +14,7 @@ def search_using_kwargs(self):
     print(search2)
 
   
-    search3 = self.date_picker_3.datetime
+    search3 = self.date_picker_3.date
   # =========================================================================
   # Setup search dictionary
     kwargs ={}
