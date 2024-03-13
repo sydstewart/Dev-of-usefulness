@@ -16,32 +16,32 @@ def get_chart_settings(chartno):
 
 
 @anvil.server.callable
-def get_change_note_data(start_date, classid):
+def get_change_note_data(kwargs):
     #read in 10000 rows of data 
-    print('Syd')
-    import pandas as pd
-    import numpy as np
-    print('classid', classid)
-    data = [
-        {'group_name': 'GROUP 1', 'client': 'CLIENT 1', 'messages': 100, 'supplier': 'SUP 1', 'blocked': 0}, 
-        {'group_name': 'GROUP 2', 'client': 'CLIENT 1', 'messages': 200, 'supplier': 'SUP 1', 'blocked': 27}, 
-        {'group_name': 'GROUP 3', 'client': 'CLIENT 1', 'messages': 300, 'supplier': 'SUP 1', 'blocked': 0}, 
-        {'group_name': 'GROUP 1', 'client': 'CLIENT 2', 'messages': 400, 'supplier': 'SUP 1', 'blocked': 4}, 
-        {'group_name': 'GROUP 2', 'client': 'CLIENT 2', 'messages': 500, 'supplier': 'SUP 1', 'blocked': 0}, 
-        {'group_name': 'GROUP 4', 'client': 'CLIENT 3', 'messages': 600, 'supplier': 'SUP 1', 'blocked': 9}, 
-    ] 
+    # print('Syd')
+    # import pandas as pd
+    # import numpy as np
+    # print('classid', classid)
+    # data = [
+    #     {'group_name': 'GROUP 1', 'client': 'CLIENT 1', 'messages': 100, 'supplier': 'SUP 1', 'blocked': 0}, 
+    #     {'group_name': 'GROUP 2', 'client': 'CLIENT 1', 'messages': 200, 'supplier': 'SUP 1', 'blocked': 27}, 
+    #     {'group_name': 'GROUP 3', 'client': 'CLIENT 1', 'messages': 300, 'supplier': 'SUP 1', 'blocked': 0}, 
+    #     {'group_name': 'GROUP 1', 'client': 'CLIENT 2', 'messages': 400, 'supplier': 'SUP 1', 'blocked': 4}, 
+    #     {'group_name': 'GROUP 2', 'client': 'CLIENT 2', 'messages': 500, 'supplier': 'SUP 1', 'blocked': 0}, 
+    #     {'group_name': 'GROUP 4', 'client': 'CLIENT 3', 'messages': 600, 'supplier': 'SUP 1', 'blocked': 9}, 
+    # ] 
     
-    df = pd.DataFrame(data)
-    grouped = df.groupby(['client','supplier'])
-    print(grouped)
-    res = grouped[['messages','blocked']].agg(np.sum)
-    res['index'] = range(len(res))
-    res = res.reset_index()
-    res.to_dict('records')
-    print(res)
+    # df = pd.DataFrame(data)
+    # grouped = df.groupby(['client','supplier'])
+    # print(grouped)
+    # res = grouped[['messages','blocked']].agg(np.sum)
+    # res['index'] = range(len(res))
+    # res = res.reset_index()
+    # res.to_dict('records')
+    # print(res)
     
   
-    changes = app_tables.change_notes.search( tables.order_by("change_date", ascending=False),change_date = q.greater_than(start_date), classid = classid)
+    changes = app_tables.change_notes.search( tables.order_by("change_date", ascending=False),kwargs)
     no_of_rows = len(changes)
     dicts = [{'change_date': r['change_date'], 'Class': r['classid']}
         for r in changes]

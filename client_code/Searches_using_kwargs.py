@@ -2,6 +2,8 @@ import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+# from ..Searches.using_kwargs import search_using_kwargs
+
 
 def search_using_kwargs(self):
 # Search definitions ========================================================================================================      
@@ -9,7 +11,7 @@ def search_using_kwargs(self):
    
     search2 = self.change_type_dropdown.selected_value 
 
-    search3 = 
+    search3 = self.startdate_textbox.text
   
 # Setup kwargs =====================================================================================================
   # Setup search dictionary
@@ -17,22 +19,27 @@ def search_using_kwargs(self):
   
 #Stage
     if search1:
+       if search1 =='In_Progress':
+          
         kwargs['stage'] = search1
   
 #Type of change
     if search2:
         kwargs['classid'] =  search2   
 
-# Search using kwargs =================================================     
-    print('kwargs=',kwargs)
-  
-    results = anvil.server.call('get_change_note_data', kwargs)
-    # results= app_tables.change_notes.search(tables.order_by('change_date', ascending = False),**kwargs)
-    # results = app_tables.change_notes.search(q.any_of(**kwargs)) 
-    print('results', results)
-    self.repeating_panel_1.items = results
-    self.hits_textbox.text  = len(results)
+    if search3:
+       kwargs['change_date'] = q.greater_than(search3) 
 
+# Search using kwargs =================================================     
+    # print('kwargs=',kwargs)
+  
+    line_plots, summary_records  = anvil.server.call('get_change_note_data', kwargs)
+    self.repeating_panel_2.items = summary_records
+    if self.date_picker_1.date and self.date_picker_2.date:
+         self.repeating_panel_2.items = app_tables.change_notes.search(change_date=q.between(self.date_picker_1.date, self.date_picker_2.date))
+    self.plot_1.data = line_plots
+    self.plot_1.layout = layout
+    pass
 
 
 
