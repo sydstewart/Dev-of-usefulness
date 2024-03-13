@@ -3,6 +3,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 import pandas as pd
+import numpy as np
 import plotly.graph_objects as go
 from datetime import datetime, time , date , timedelta
 import math
@@ -16,7 +17,7 @@ def get_chart_settings(chartno):
 
 
 @anvil.server.callable
-def get_change_note_data(kwargs):
+def get_change_note_data(**kwargs):
     #read in 10000 rows of data 
     # print('Syd')
     # import pandas as pd
@@ -41,7 +42,7 @@ def get_change_note_data(kwargs):
     # print(res)
     
   
-    changes = app_tables.change_notes.search( tables.order_by("change_date", ascending=False),kwargs)
+    changes = app_tables.change_notes.search( tables.order_by("change_date", ascending=False),**kwargs)
     no_of_rows = len(changes)
     dicts = [{'change_date': r['change_date'], 'Class': r['classid']}
         for r in changes]
