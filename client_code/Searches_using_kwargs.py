@@ -10,6 +10,7 @@ def search_using_kwargs(self):
     search1 = self.stage_dropdown.selected_value 
    
     search2 = self.change_type_dropdown.selected_value 
+    print(search2)
 
     search3 = self.startdate_textbox.text
   
@@ -19,8 +20,7 @@ def search_using_kwargs(self):
   
 #Stage
     if search1:
-       if search1 =='In_Progress':
-          
+               
         kwargs['stage'] = search1
   
 #Type of change
@@ -31,9 +31,9 @@ def search_using_kwargs(self):
        kwargs['change_date'] = q.greater_than(search3) 
 
 # Search using kwargs =================================================     
-    # print('kwargs=',kwargs)
+    print('kwargs=',kwargs)
   
-    line_plots, summary_records  = anvil.server.call('get_change_note_data', kwargs)
+    line_plots, summary_records  = anvil.server.call('get_change_note_data', **kwargs)
     self.repeating_panel_2.items = summary_records
     if self.date_picker_1.date and self.date_picker_2.date:
          self.repeating_panel_2.items = app_tables.change_notes.search(change_date=q.between(self.date_picker_1.date, self.date_picker_2.date))
