@@ -46,7 +46,7 @@ components:
     layout_properties: {grid_position: 'WZKNFZ,YHLRVQ HVTFRY,GQFBLK'}
     event_bindings: {change: stage_dropdown_change}
   - name: label_3
-    properties: {}
+    properties: {text: Test Clone}
     type: Label
     layout_properties: {grid_position: 'WZKNFZ,QIQNKP'}
   - name: plot_1
