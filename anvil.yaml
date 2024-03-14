@@ -1,5 +1,5 @@
 allow_embedding: false
-package_name: Usefulness
+package_name: Clone_of_Usefulness
 db_schema:
   change_notes:
     title: change_notes
@@ -168,7 +168,7 @@ db_schema:
       admin_ui: {width: 200, order: 2}
       type: string
     title: Improvements_by_month
-name: Usefulness
+name: Clone of Usefulness
 startup_form: Form1
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
 services:
