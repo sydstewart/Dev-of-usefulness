@@ -42,7 +42,7 @@ def get_change_note_data(**kwargs):
     # print(res)
     
   
-    changes = app_tables.change_notes.search( tables.order_by("change_date", ascending=False),**kwargs)
+    changes = app_tables.change_notes.search()
     no_of_rows = len(changes)
     dicts = [{'change_date': r['change_date'], 'Class': r['classid']}
         for r in changes]
@@ -70,12 +70,14 @@ def get_change_note_data(**kwargs):
     
   # Fill in Missing months with zero change Notes =========================================================
     today = date.today()
-    d1 = today.strftime("%Y-%m")
-    
+    startdate = 
+    d1 = today.strftime("%Y-%m-%d")
+    d2 = 
+    print('d1',d1)
     res["ym-date"] = pd.to_datetime(res["ym-date"]) 
     
-    all_dates = pd.DataFrame({"ym-date":pd.date_range(start=res['ym-date'].min(),end=res['ym-date'].max(),freq="MS")})
-    
+    all_dates = pd.DataFrame({"ym-date":pd.date_range(start=res['ym-date'].min(),end=d1,freq="MS")})
+    print('all dates', all_dates)
     res = pd.merge(all_dates, res, how="left", on='ym-date').fillna(0)
 
   # =====Calculate Range and Range Mean =========================================================
