@@ -26,10 +26,20 @@ def search_using_kwargs(self):
   
 #Type of change
     if search2 == 'In_Process':
-        kwargs['classid'] =  q.any_of("Submitted", "" )
-
+        kwargs['classid'] =  q.any_of("Submitted", "Short Listed", "Under Investigation", "Under Development")
+    else:
+        kwargs['classid'] = search2
+# Submitted
+# Short Listed
+# Rejected
+# Under Development
+# Under Investigation
+# Released
+# Reviewed
+# Archive
     if search3:
-        kwargs['change_date'] = q.greater_than(search3) 
+        
+        kwargs['change_date'] = q.greater_than(datetime(year=2021, month=1, day=1)) 
 
 # Search using kwargs =================================================     
     print('kwargs=',kwargs)
