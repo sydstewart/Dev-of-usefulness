@@ -44,8 +44,10 @@ def get_change_note_data(**kwargs):
   
     changes = app_tables.change_notes.search()
     no_of_rows = len(changes)
+    print('No of Rows', no_of_rows)
     dicts = [{'change_date': r['change_date'], 'Class': r['classid']}
         for r in changes]
+    print('dicts',len(dicts))
     df1 = pd.DataFrame.from_dict(dicts)
     df1['change_date'] = pd.to_datetime(df1['change_date'], infer_datetime_format=True, utc=True )
     df1['ym-date'] = df1['change_date'].dt.strftime('%Y-%m')
@@ -67,16 +69,17 @@ def get_change_note_data(**kwargs):
     res = grouped[['Counts']].agg(np.sum)
     res['index'] = range(len(res))
     res = res.reset_index()
-    
+    print('Sta Daate', res['ym-date'].min())
+    print('End Date', res['ym-date'].max())
   # Fill in Missing months with zero change Notes =========================================================
     today = date.today()
-    startdate = 
+    startdate = datetime.now() + timedelta(days=-300)
     d1 = today.strftime("%Y-%m-%d")
-    d2 = 
+    
     print('d1',d1)
     res["ym-date"] = pd.to_datetime(res["ym-date"]) 
     
-    all_dates = pd.DataFrame({"ym-date":pd.date_range(start=res['ym-date'].min(),end=d1,freq="MS")})
+    all_dates = pd.DataFrame({"ym-date":pd.date_range(start=res['ym-date'].min(),end=res['ym-date'].max(),freq="MS")})
     print('all dates', all_dates)
     res = pd.merge(all_dates, res, how="left", on='ym-date').fillna(0)
 

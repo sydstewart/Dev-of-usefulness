@@ -38,9 +38,9 @@ def search_using_kwargs(self):
 # Released
 # Reviewed
 # Archive
-    # if search3:
+    if search3:
         
-    #     kwargs['change_date'] = q.greater_than(search3) 
+        kwargs['change_date'] = q.greater_than(search3) 
 
 # Search using kwargs =================================================     
     print('kwargs=',kwargs)
