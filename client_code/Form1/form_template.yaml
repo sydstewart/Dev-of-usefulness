@@ -18,6 +18,7 @@ components:
     layout_properties: {grid_position: 'WZKNFZ,YHLRVQ LHVPXZ,FBRMKJ'}
     data_bindings:
     - {property: date, code: '', writeback: false}
+    event_bindings: {change: date_picker_3_change}
   - name: startdate_textbox
     properties: {}
     type: TextBox
@@ -40,7 +41,7 @@ components:
     layout_properties: {grid_position: 'WZKNFZ,YHLRVQ HVTFRY,EZHABE'}
   - name: stage_dropdown
     properties:
-      items: [In_Process, Released, Rejected]
+      items: [Released]
       include_placeholder: true
     type: DropDown
     layout_properties: {grid_position: 'WZKNFZ,YHLRVQ HVTFRY,GQFBLK'}
