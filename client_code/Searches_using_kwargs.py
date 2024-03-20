@@ -15,6 +15,7 @@ def search_using_kwargs(self):
 
   
     search3 = self.date_picker_3.date
+    print('search3', search3)
   # =========================================================================
   # Setup search dictionary
     kwargs ={}
@@ -39,7 +40,7 @@ def search_using_kwargs(self):
 # Reviewed
 # Archive
     if search3:
-        start = self.date_picker_3.date
+        start = (self.date_picker_3.date).date()
         kwargs['change_date'] = q.greater_than(start)
 
 # Search using kwargs =================================================     
