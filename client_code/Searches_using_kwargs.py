@@ -39,8 +39,8 @@ def search_using_kwargs(self):
 # Reviewed
 # Archive
     if search3:
-        
-        kwargs['change_date'] = q.greater_than(search3) 
+        start = self.date_picker_3.date
+        kwargs['change_date'] = q.greater_than(start)
 
 # Search using kwargs =================================================     
     print('kwargs=',kwargs)
