@@ -1,6 +1,48 @@
 allow_embedding: false
 package_name: Clone_of_Usefulness
 db_schema:
+  improvements_by_month:
+    client: full
+    server: full
+    columns:
+    - name: ym_date
+      admin_ui: {order: 0, width: 200}
+      type: datetime
+    - name: Counts
+      admin_ui: {width: 200, order: 1}
+      type: number
+    - name: Comment
+      admin_ui: {width: 200, order: 2}
+      type: string
+    title: Improvements_by_month
+  change_summary:
+    title: change_summary
+    client: none
+    server: full
+    columns:
+    - name: classid
+      admin_ui: {width: 200}
+      type: string
+    - name: Year_Month
+      admin_ui: {width: 200}
+      type: string
+    - name: ImpCount
+      admin_ui: {width: 200}
+      type: number
+  chart_definition:
+    title: chart_definition
+    client: none
+    server: full
+    columns:
+    - name: title
+      admin_ui: {width: 200}
+      type: string
+    - name: chart_no
+      admin_ui: {width: 200}
+      type: number
+    - name: start_date
+      admin_ui: {width: 200}
+      type: datetime
   change_notes:
     title: change_notes
     client: full
@@ -27,6 +69,9 @@ db_schema:
     - name: reported_by_customer
       admin_ui: {width: 200}
       type: string
+    - name: found_in_version_no
+      admin_ui: {width: 200}
+      type: string
     - name: priority
       admin_ui: {width: 200}
       type: string
@@ -34,7 +79,7 @@ db_schema:
       admin_ui: {width: 200}
       type: string
     - name: classid
-      admin_ui: {order: 10, width: 200}
+      admin_ui: {width: 200}
       type: string
     - name: product_area
       admin_ui: {width: 200}
@@ -99,18 +144,15 @@ db_schema:
     - name: created_by_lastname
       admin_ui: {width: 200}
       type: string
-    - name: found_in_version_no
+    - name: due_date
       admin_ui: {width: 200}
-      type: string
+      type: datetime
     - name: status
       admin_ui: {width: 200}
       type: string
     - name: progress
       admin_ui: {width: 200}
       type: number
-    - name: assigned_to
-      admin_ui: {width: 200}
-      type: string
     - name: change_search_date
       admin_ui: {width: 200}
       type: date
@@ -123,51 +165,6 @@ db_schema:
     - name: assigned_to
       admin_ui: {width: 200}
       type: string
-    - name: due_date
-      admin_ui: {width: 200}
-      type: datetime
-  change_summary:
-    client: none
-    server: full
-    columns:
-    - name: classid
-      admin_ui: {width: 200, order: 0}
-      type: string
-    - name: Year_Month
-      admin_ui: {width: 200, order: 2}
-      type: string
-    - name: ImpCount
-      admin_ui: {width: 200, order: 3}
-      type: number
-    title: change_summary
-  chart_definition:
-    client: full
-    server: full
-    columns:
-    - name: title
-      admin_ui: {width: 200, order: 0}
-      type: string
-    - name: chart_no
-      admin_ui: {order: 1, width: 200}
-      type: number
-    - name: start_date
-      admin_ui: {width: 200, order: 2}
-      type: datetime
-    title: chart_definition
-  improvements_by_month:
-    client: search
-    server: full
-    columns:
-    - name: ym_date
-      admin_ui: {order: 0, width: 200}
-      type: datetime
-    - name: Counts
-      admin_ui: {width: 200, order: 1}
-      type: number
-    - name: Comment
-      admin_ui: {width: 200, order: 2}
-      type: string
-    title: Improvements_by_month
 name: Clone of Usefulness
 startup_form: Form1
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
