@@ -165,6 +165,14 @@ db_schema:
     - name: assigned_to
       admin_ui: {width: 200}
       type: string
+  system_type:
+    title: System_type
+    client: full
+    server: full
+    columns:
+    - name: System
+      admin_ui: {width: 200}
+      type: string
 name: Clone of Usefulness
 startup_form: Form1
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}

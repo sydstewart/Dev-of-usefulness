@@ -25,8 +25,8 @@ def search_using_kwargs(self):
         kwargs['stage'] = search1
   
 #Type of change
-    if search2:
-        kwargs['classid'] =  search2   
+    if search2 == 'In_Process':
+        kwargs['classid'] =  q.any_of("Submitted", "" )
 
     if search3:
         kwargs['change_date'] = q.greater_than(search3) 

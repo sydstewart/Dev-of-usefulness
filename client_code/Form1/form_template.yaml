@@ -108,3 +108,7 @@ components:
   properties: {}
   name: navbar_links
   layout_properties: {slot: nav-right}
+- name: system_type_label
+  properties: {}
+  type: Label
+  layout_properties: {slot: title}
