@@ -40,15 +40,12 @@ def search_using_kwargs(self):
 # Reviewed
 # Archive
     if search3:
-        start = self.date_picker_3.date
-        # year = int(start.strftime('%Y'))
-        # month = int(start.strftime('%m'))
-        # day = int(start.strftime('%d'))
-        start = start.replace(hour=0)
-        start = start.replace(minute =0)
-        start =start.replace(second = 0)
-        # start = datetime(year, month, day)
-        print('start', start)
+        date = self.date_picker_3.date
+        year = int(date.strftime('%Y'))
+        month = int(date.strftime('%m'))
+        day = int(date.strftime('%d'))
+        start = datetime(year, month, day)
+        print('Start Date=',start)
         kwargs['change_date']=q.greater_than_or_equal_to(start)
 
 # Search using kwargs =================================================     
@@ -59,7 +56,7 @@ def search_using_kwargs(self):
       'yaxis': {'title': 'Value'},
  
     }
-    line_plots, summary_records  = anvil.server.call('get_change_note_data', q.all_of( **kwargs)
+    line_plots, summary_records  = anvil.server.call('get_change_note_data',  **kwargs)
     self.repeating_panel_2.items = summary_records
     if self.date_picker_1.date and self.date_picker_2.date:
          self.repeating_panel_2.items = app_tables.change_notes.search(change_date=q.between(self.date_picker_1.date, self.date_picker_2.date))
