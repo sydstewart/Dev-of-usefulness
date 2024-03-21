@@ -27,7 +27,8 @@ class Form1(Form1Template):
 
   def stage_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
-    dosearch(self)
+    records = dosearch(self)
+    
     
   def change_type_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""

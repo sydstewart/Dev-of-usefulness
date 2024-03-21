@@ -61,6 +61,10 @@ components:
       type: DropDown
       layout_properties: {grid_position: 'KUONME,LVTBWR NVOQVM,XODIPF'}
       event_bindings: {change: PICK_drop_down_change}
+  - name: no_records
+    properties: {text: No Records Found, align: center, bold: true, background: '#ffdbdb'}
+    type: Label
+    layout_properties: {grid_position: 'POCJGJ,PHHIVF'}
   - name: plot_1
     properties: {}
     type: Plot
