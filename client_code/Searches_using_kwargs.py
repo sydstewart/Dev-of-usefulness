@@ -46,7 +46,7 @@ def search_using_kwargs(self):
         day = int(date.strftime('%d'))
         start = datetime(year, month, day)
         print('start', start)
-        kwargs['change_date'] = q.greater_than(start)
+        kwargs['change_date']=q.greater_than_or_equal_to(datetime(year=2020, month=12, day=15))
 
 # Search using kwargs =================================================     
     print('kwargs=',kwargs)
