@@ -42,7 +42,7 @@ def get_change_note_data(**kwargs):
     # print(res)
     
   
-    changes = app_tables.change_notes.search()
+    changes = app_tables.change_notes.search(**kwargs)
     no_of_rows = len(changes)
     print('No of Rows', no_of_rows)
     dicts = [{'change_date': r['change_date'], 'Class': r['classid']}

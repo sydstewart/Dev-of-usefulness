@@ -31,9 +31,24 @@ class Form1(Form1Template):
   def change_type_dropdown_change(self, **event_args):
     """This method is called when an item is selected"""
     search_using_kwargs(self)
+    kwargs ={}
+    kwargs['change_date'] = q.greater_than(self.date_picker_3.date)
+    kwargs['classid'] = self.change_type_dropdown.selected_value
+    summary_records = app_tables.change_notes.search(tables.order_by('change_date'),q.any_of(**kwargs )  )                                                                          
+    self.repeating_panel_2.items= summary_records
 
   def startdate_textbox_pressed_enter(self, **event_args):
     """This method is called when the user presses Enter in this text box"""
     search_using_kwargs(self)
+
+  def date_picker_3_change(self, **event_args):
+    """This method is called when the selected date changes"""
+    kwargs ={}
+    kwargs['change_date'] = q.greater_than(self.date_picker_3.date)
+    kwargs['classid'] = self.change_type_dropdown.selected_value
+    summary_records = app_tables.change_notes.search(tables.order_by('change_date'),q.any_of(**kwargs )  )                                                                          
+    self.repeating_panel_2.items= summary_records
+    search_using_kwargs(self)
+
 
 
