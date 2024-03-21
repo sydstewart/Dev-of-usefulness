@@ -21,6 +21,8 @@ class Form1(Form1Template):
     self.date_picker_3.date = '2020-01-01'
     self.change_type_dropdown.selected_value ='Improvement'
     self.stage_dropdown.selected_value = 'Created'
+    self.PICK_drop_down.selected_value = None
+    
     dosearch(self)
 
   def stage_dropdown_change(self, **event_args):
@@ -34,6 +36,11 @@ class Form1(Form1Template):
   def date_picker_3_change(self, **event_args):
       """This method is called when the selected date changes"""
       dosearch(self)
+
+  def PICK_drop_down_change(self, **event_args):
+    """This method is called when an item is selected"""
+    dosearch(self)
+    pass
    
      
    

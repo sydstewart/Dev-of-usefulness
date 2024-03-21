@@ -9,14 +9,14 @@ components:
   layout_properties: {slot: default}
   components:
   - name: card_1
-    properties: {role: card, col_widths: '{"ZRPHFH":20,"LVTBWR":30,"EUQSOZ":10}'}
+    properties: {role: card, col_widths: '{"ZRPHFH":5,"LVTBWR":42,"RQITZW":12,"TJVSJJ":3,"CJGWRM":21,"JRUYHG":4,"XODIPF":20}'}
     type: ColumnPanel
-    layout_properties: {grid_position: 'WDIDAS,YEMHYS'}
+    layout_properties: {grid_position: 'WDIDAS,YEMHYS', full_width_row: true}
     components:
     - name: label_1
       properties: {text: Start_Date, align: right, bold: true}
       type: Label
-      layout_properties: {grid_position: 'KUONME,ZRPHFH TAISKD,UYEEPC'}
+      layout_properties: {grid_position: 'KUONME,ZRPHFH TAISKD,UYEEPC', full_width_row: true}
     - name: label_2
       properties: {text: Type of Change, align: right, bold: true}
       type: Label
@@ -24,10 +24,14 @@ components:
     - name: date_picker_3
       properties: {placeholder: 01/01/2020, format: YYYY-MM-DD, pick_time: false}
       type: DatePicker
-      layout_properties: {grid_position: 'KUONME,LVTBWR ZBXDBO,ZNBRWB'}
+      layout_properties: {grid_position: 'KUONME,LVTBWR ZBXDBO,ZNBRWB', full_width_row: true}
       data_bindings:
       - {property: date, code: '', writeback: false}
       event_bindings: {change: date_picker_3_change}
+    - name: label_3
+      properties: {}
+      type: Label
+      layout_properties: {grid_position: 'KUONME,LVTBWR ZBXDBO,WFKZUS'}
     - name: change_type_dropdown
       properties:
         items: [Defect, Improvement, '']
@@ -46,10 +50,17 @@ components:
       type: DropDown
       layout_properties: {grid_position: 'KUONME,LVTBWR NVOQVM,CJGWRM'}
       event_bindings: {change: stage_dropdown_change}
-    - name: label_3
-      properties: {}
+    - name: PICK
+      properties: {bold: true, text: PICK}
       type: Label
-      layout_properties: {grid_position: 'KUONME,EUQSOZ'}
+      layout_properties: {grid_position: 'KUONME,LVTBWR NVOQVM,JRUYHG'}
+    - name: PICK_drop_down
+      properties:
+        items: [1. Implement, 2. Challenge, 3. Possible, 4. Kill, 5 Not Defined.]
+        include_placeholder: true
+      type: DropDown
+      layout_properties: {grid_position: 'KUONME,LVTBWR NVOQVM,XODIPF'}
+      event_bindings: {change: PICK_drop_down_change}
   - name: plot_1
     properties: {}
     type: Plot
