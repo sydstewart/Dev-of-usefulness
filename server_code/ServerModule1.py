@@ -9,38 +9,35 @@ from datetime import datetime, time , date , timedelta
 import math
 
 @anvil.server.callable
-def get_chart_settings(chartno):        
-    t = app_tables.chart_definition.get(chart_no = chartno)
-    title =  t['title']
-    start_date =t['start_date']
-    return start_date
+def get_change_note_data2(stardate, classid, stage):
+    search1 = stage
+   
+    search2 = classid
+       
+    search3 = stardate
+   
+  # =========================================================================
+  # Setup search dictionary
+    kwargs ={}
+  
+#Stage
+    if search1 == 'Released':
+        kwargs['stage'] = 'Released'
 
+#Type of change
+    if search2:
+         kwargs['classid'] = search2
 
-@anvil.server.callable
-def get_change_note_data(kwargs):
-    #read in 10000 rows of data 
-    # print('Syd')
-    # import pandas as pd
-    # import numpy as np
-    # print('classid', classid)
-    # data = [
-    #     {'group_name': 'GROUP 1', 'client': 'CLIENT 1', 'messages': 100, 'supplier': 'SUP 1', 'blocked': 0}, 
-    #     {'group_name': 'GROUP 2', 'client': 'CLIENT 1', 'messages': 200, 'supplier': 'SUP 1', 'blocked': 27}, 
-    #     {'group_name': 'GROUP 3', 'client': 'CLIENT 1', 'messages': 300, 'supplier': 'SUP 1', 'blocked': 0}, 
-    #     {'group_name': 'GROUP 1', 'client': 'CLIENT 2', 'messages': 400, 'supplier': 'SUP 1', 'blocked': 4}, 
-    #     {'group_name': 'GROUP 2', 'client': 'CLIENT 2', 'messages': 500, 'supplier': 'SUP 1', 'blocked': 0}, 
-    #     {'group_name': 'GROUP 4', 'client': 'CLIENT 3', 'messages': 600, 'supplier': 'SUP 1', 'blocked': 9}, 
-    # ] 
+    if search3:
+        date = stardate
+        year = int(date.strftime('%Y'))
+        month = int(date.strftime('%m'))
+        day = int(date.strftime('%d'))
+        start = datetime(year, month, day)
+        print('Start Date=',start)
+        kwargs['change_date']=q.greater_than_or_equal_to(start)
+
     
-    # df = pd.DataFrame(data)
-    # grouped = df.groupby(['client','supplier'])
-    # print(grouped)
-    # res = grouped[['messages','blocked']].agg(np.sum)
-    # res['index'] = range(len(res))
-    # res = res.reset_index()
-    # res.to_dict('records')
-    # print(res)
-    print('kwargs',kwargs)
   
     changes = app_tables.change_notes.search(**kwargs)
     no_of_rows = len(changes)
@@ -110,10 +107,11 @@ def get_change_note_data(kwargs):
   #====== prepare records for display in form =======        
     summary_records ={}
     summary_records = res.to_dict(orient="records")
-    app_tables.improvements_by_month.delete_all_rows()
-    for row in summary_records:
-      app_tables.improvements_by_month.add_row(ym_date =row['ym-date'], Counts= row['Counts']) 
     print('summary_records', summary_records)
+    # app_tables.improvements_by_month.delete_all_rows()
+    # for row in summary_records:
+    #   app_tables.improvements_by_month.add_row(ym_date =row['ym-date'], Counts= row['Counts']) 
+    # print('summary_records', summary_records)
 
   #==== prepare Chart +++++++++++++++++++++++++++++++++++++++++++++++
     line_plots = [
@@ -142,33 +140,4 @@ def get_change_note_data(kwargs):
 
 
 
-
-
-# df = pandas.DataFrame.from_dict(dicts)
-  #   Impcount = 0
-  #   # for row in changes:
-  #   #   if (row['classid']) == 'Improvement':
-  #   #        ImpCount = 1 + Impcount
-  #   # print(ImpCount)
-  #   # app_tables.change_summary.add_row(ImpCount = Impcount, classid = 'Improvement')   
-  #   dicts = [{'change_date': r['change_date'], 'Class': r['classid']} for r in changes]
-  #   df = pd.DataFrame.from_dict(dicts)
-  #   df['change_date'] = pd.to_datetime(df['change_date'], infer_datetime_format=True, utc=True )
-  #   df['Counts'] = 1
-  # # # selecting rows based on condition 
-  #   options = ['Improvement'] 
-  #   df['Year_Month'] = df['change_date'].dt.to_period('M')
-  #   df = df[df['Class'].isin(options)] 
-  # #   # df['Counts'] = 1
-  #   # df.groupby["Year_Month"].count()
-  # #   results = df.groupby(["Year_Month"])['Year'].count()
-  #   df.groupby('Year_Month').agg({'Counts': ['sum']})
-  
-  #   # print('df',df)
-  #   xlist = df['Year_Month'].tolist()
-  #   ylist = df['Counts'].tolist()
-
-  #   print(xlist)
-  #   print(ylist)
-  #   line_plots = go.Scatter(x=xlist, y=ylist, name='Improvements per month', marker=dict(color='#e50000'))
-  #   # return line_plots
+#
