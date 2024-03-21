@@ -32,8 +32,8 @@ class Form1(Form1Template):
     """This method is called when an item is selected"""
     search_using_kwargs(self)
 
-  # def startdate_textbox_pressed_enter(self, **event_args):
-  #   """This method is called when the user presses Enter in this text box"""
-  #   search_using_kwargs(self)
+  def startdate_textbox_pressed_enter(self, **event_args):
+    """This method is called when the user presses Enter in this text box"""
+    search_using_kwargs(self)
 
 

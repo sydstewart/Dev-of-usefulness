@@ -59,7 +59,7 @@ def search_using_kwargs(self):
       'yaxis': {'title': 'Value'},
  
     }
-    line_plots, summary_records  = anvil.server.call('get_change_note_data', **kwargs)
+    line_plots, summary_records  = anvil.server.call('get_change_note_data', q.all_of( **kwargs)
     self.repeating_panel_2.items = summary_records
     if self.date_picker_1.date and self.date_picker_2.date:
          self.repeating_panel_2.items = app_tables.change_notes.search(change_date=q.between(self.date_picker_1.date, self.date_picker_2.date))
