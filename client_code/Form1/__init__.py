@@ -16,7 +16,8 @@ class Form1(Form1Template):
     self.init_components(**properties)
     # start_date =anvil.server.call('get_chart_settings',1)  
     system_type = app_tables.system_type.get(System='Test')
-    
+    if system_type:
+       self.system_type_label.text = 'Test'
     self.date_picker_3.date = '2020-01-01'
     self.change_type_dropdown.selected_value ='Improvement'
     self.stage_dropdown.selected_value = 'Created'
