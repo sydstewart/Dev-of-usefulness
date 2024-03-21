@@ -40,13 +40,16 @@ def search_using_kwargs(self):
 # Reviewed
 # Archive
     if search3:
-        date = self.date_picker_3.date
-        year = int(date.strftime('%Y'))
-        month = int(date.strftime('%m'))
-        day = int(date.strftime('%d'))
-        start = datetime(year, month, day)
+        start = self.date_picker_3.date
+        year = int(start.strftime('%Y'))
+        month = int(start.strftime('%m'))
+        day = int(start.strftime('%d'))
+        start = start.replace(hour=0)
+        start = start.replace(minute =0)
+        start =start.replace(second = 0)
+        # start = datetime(year, month, day)
         print('start', start)
-        kwargs['change_date']=q.greater_than_or_equal_to(datetime(year=2020, month=12, day=15))
+        kwargs['change_date']=q.greater_than_or_equal_to(start)
 
 # Search using kwargs =================================================     
     print('kwargs=',kwargs)
