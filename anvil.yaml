@@ -165,8 +165,38 @@ db_schema:
     - name: assigned_to
       admin_ui: {width: 200}
       type: string
+    - name: assigned to
+      admin_ui: {width: 200}
+      type: string
+    - name: class
+      admin_ui: {width: 200}
+      type: string
+    - name: created_ by_ firstname
+      admin_ui: {width: 200}
+      type: string
+    - name: due date
+      admin_ui: {width: 200}
+      type: datetime
+    - name: er4
+      admin_ui: {width: 200}
+      type: string
+    - name: found _in_version_no
+      admin_ui: {width: 200}
+      type: string
+    - name: found_in_last_two_years_1
+      admin_ui: {width: 200}
+      type: string
+    - name: milestone
+      admin_ui: {width: 200}
+      type: string
+    - name: refresh
+      admin_ui: {width: 200}
+      type: string
+    - name: start date
+      admin_ui: {width: 200}
+      type: datetime
   system_type:
-    title: System_type
+    title: System_Type
     client: full
     server: full
     columns:
