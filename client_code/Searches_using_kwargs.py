@@ -27,18 +27,8 @@ def search_using_kwargs(self):
   
 #Type of change
     if search2 == 'In_Process':
-        search2 =  q.any_of("Submitted", "Short Listed", "Under Investigation", "Under Development")
-        kwargs['classid'] =  search2
-    else:
-        kwargs['classid'] = search2
-# Submitted
-# Short Listed
-# Rejected
-# Under Development
-# Under Investigation
-# Released
-# Reviewed
-# Archive
+         kwargs['classid'] = search2
+
     if search3:
         date = self.date_picker_3.date
         year = int(date.strftime('%Y'))
@@ -56,16 +46,16 @@ def search_using_kwargs(self):
       'yaxis': {'title': 'Value'},
  
     }
-    line_plots, summary_records  = anvil.server.call('get_change_note_data',  **kwargs)
+    line_plots, summary_records  = anvil.server.call('get_change_note_data',   kwargs)
     self.repeating_panel_2.items = summary_records
     if self.date_picker_1.date and self.date_picker_2.date:
-         self.repeating_panel_2.items = app_tables.change_notes.search(change_date=q.between(self.date_picker_1.date, self.date_picker_2.date))
+         self.repeating_panel_2.items = app_tables.change_notes.search(change_date=q.between(**kwargs))
     self.plot_1.data = line_plots
     self.plot_1.layout = layout
     pass
 
 
-
+# self.date_picker_3.date,self.change_type_dropdown.selected_value)
 
 
 

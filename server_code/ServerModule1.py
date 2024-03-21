@@ -17,7 +17,7 @@ def get_chart_settings(chartno):
 
 
 @anvil.server.callable
-def get_change_note_data(**kwargs):
+def get_change_note_data(kwargs):
     #read in 10000 rows of data 
     # print('Syd')
     # import pandas as pd
@@ -40,7 +40,7 @@ def get_change_note_data(**kwargs):
     # res = res.reset_index()
     # res.to_dict('records')
     # print(res)
-    
+    print('kwargs',kwargs)
   
     changes = app_tables.change_notes.search(**kwargs)
     no_of_rows = len(changes)

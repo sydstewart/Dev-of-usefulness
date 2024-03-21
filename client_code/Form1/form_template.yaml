@@ -31,7 +31,7 @@ components:
   - name: change_type_dropdown
     properties:
       items: [Defect, Improvement, '']
-      include_placeholder: true
+      include_placeholder: false
     type: DropDown
     layout_properties: {grid_position: 'WZKNFZ,YHLRVQ HVTFRY,DWLOMH'}
     event_bindings: {change: change_type_dropdown_change}
