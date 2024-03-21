@@ -13,14 +13,14 @@ class Form1(Form1Template):
   def __init__(self, **properties):
 # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    start_date =anvil.server.call('get_chart_settings',1)  
+    # start_date =anvil.server.call('get_chart_settings',1)  
     system_type = app_tables.system_type.get(System='Test')
     if system_type:
        alert('THis is the Test System')
        self.system_type_label.text = 'Test System'
     else:
       self.system_type_label.text = 'Live System'
-    print(start_date)
+    # print(start_date)
     # self.date_picker_3.datetime = datetime.date.today() + datetime.timedelta(days=600)
     
 

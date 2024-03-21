@@ -41,9 +41,9 @@ def search_using_kwargs(self):
 # Archive
     if search3:
         start = self.date_picker_3.date
-        year = int(start.strftime('%Y'))
-        month = int(start.strftime('%m'))
-        day = int(start.strftime('%d'))
+        # year = int(start.strftime('%Y'))
+        # month = int(start.strftime('%m'))
+        # day = int(start.strftime('%d'))
         start = start.replace(hour=0)
         start = start.replace(minute =0)
         start =start.replace(second = 0)
