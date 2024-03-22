@@ -22,8 +22,8 @@ class Form1(Form1Template):
     self.change_type_dropdown.selected_value ='Improvement'
     self.stage_dropdown.selected_value = 'Created'
     self.PICK_drop_down.selected_value = None
-    self.run_chart_radio_button.selected
-    
+    self.run_chart_radio_button.selected =True
+    self.pie_chart_radio_button.selected = False
     dosearch(self)
 
   def stage_dropdown_change(self, **event_args):
@@ -44,9 +44,22 @@ class Form1(Form1Template):
     dosearch(self)
     pass
 
-  def button_1_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    
+  def pie_chart_radio_button_clicked(self, **event_args):
+    """This method is called when this radio button is selected"""
+    self.run_chart_radio_button.selected =False
+    self.pie_chart_radio_button.selected = True
+    self.plot_1.visible = True
+    self.plot_1.layout = None
+    self.plot_1.data = go.Pie(
+    labels=['Oxygen','Hydrogen','Carbon_Dioxide','Nitrogen'],
+    values=[4500, 2500, 1053, 500])
+    pass
+
+  def run_chart_radio_button_clicked(self, **event_args):
+    """This method is called when this radio button is selected"""
+    self.run_chart_radio_button.selected =True
+    self.pie_chart_radio_button.selected = False
+    dosearch(self) 
     pass
    
      
