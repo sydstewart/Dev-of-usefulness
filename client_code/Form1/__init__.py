@@ -22,7 +22,7 @@ class Form1(Form1Template):
     self.change_type_dropdown.selected_value ='Improvement'
     self.stage_dropdown.selected_value = 'Created'
     self.PICK_drop_down.selected_value = None
-    self.run_chart_radio_button.selected
+    self.run_chart_radio_button.selected =True
     
     dosearch(self)
 
@@ -44,9 +44,10 @@ class Form1(Form1Template):
     dosearch(self)
     pass
 
-  def button_1_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    
+  def pie_chart_radio_button_clicked(self, **event_args):
+    """This method is called when this radio button is selected"""
+    self.run_chart_radio_button.selected =False
+    self
     pass
    
      

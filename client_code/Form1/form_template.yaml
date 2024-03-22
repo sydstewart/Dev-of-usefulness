@@ -65,6 +65,11 @@ components:
     properties: {text: Run Chart}
     type: RadioButton
     layout_properties: {grid_position: 'GTVMTN,JQWHXL'}
+  - name: pie_chart_radio_button
+    properties: {text: Pie Carts}
+    type: RadioButton
+    layout_properties: {grid_position: 'GTVMTN,XTDQDW'}
+    event_bindings: {clicked: pie_chart_radio_button_clicked}
   - name: no_records
     properties: {text: No Records Found, align: center, bold: true, background: '#ffdbdb'}
     type: Label
