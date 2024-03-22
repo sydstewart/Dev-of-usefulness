@@ -13,6 +13,7 @@ def dosearch(self):
         stage = self.stage_dropdown.selected_value
         pick = self.PICK_drop_down.selected_value
         print('pick', pick)
+        
         records_found =  anvil.server.call('get_change_note_data1',startdate, classid, stage, pick)
         
         if records_found:

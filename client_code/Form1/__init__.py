@@ -22,6 +22,7 @@ class Form1(Form1Template):
     self.change_type_dropdown.selected_value ='Improvement'
     self.stage_dropdown.selected_value = 'Created'
     self.PICK_drop_down.selected_value = None
+    self.run_chart_radio_button.selected
     
     dosearch(self)
 
@@ -41,6 +42,11 @@ class Form1(Form1Template):
   def PICK_drop_down_change(self, **event_args):
     """This method is called when an item is selected"""
     dosearch(self)
+    pass
+
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    
     pass
    
      
